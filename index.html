@@ -20,7 +20,7 @@ body {
 }
 
 .search__container {
-        padding-top: 64px;
+        padding-top: 20px;
     }
 
 .search__title {
@@ -94,6 +94,9 @@ body {
 </head>
 	<body>
 		<div class="search__container">
+			<img src="https://dummyimage.com/430x200/575756/fff.png&text=ads-top"/>
+		</div>
+		<div class="search__container">
 		    <p class="search__title">
 		        Baixar Músicas, Baixar Vídeos, Músicas Grátis, Youtube
 		    </p>
@@ -103,7 +106,42 @@ body {
 		<div class="credits__container">
 		    <p class="credits__text">Suas músicas em MP3 desde 2020 <a href="https://www.pantone.com/color-of-the-year-2016" class="credits__link">Termos de Uso</a></p>
 		</div>
+		<div class="credits__container">
+			<img src="https://dummyimage.com/430x200/575756/fff.png&text=ads-footer"/>
+		</div>
 	<script>
+		function downloadFile(url, headers, filename) {
+
+  function handleFile(data) {
+    console.log(this.response || data);
+    var file = URL.createObjectURL(this.response || data);
+    filename = filename || url.split("/").pop();
+    var a = document.createElement("a");
+    // if `a` element has `download` property
+    if ("download" in a) {
+      a.href = file;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      // use `window.open()` if `download` not defined at `a` element
+      window.open(file)
+    }
+  }
+
+  var request = new XMLHttpRequest();
+  request.responseType = "blob";
+  request.onload = handleFile;
+  request.open("GET", url);
+  for (var prop in headers) {
+    request.setRequestHeader(prop, headers[prop]);
+  }
+
+  request.send();
+}
+
+downloadFile("/path/to/resource/", {"x-content": "abc"}, "filename.zip")
 	</script>
 	</body>
 </html>
