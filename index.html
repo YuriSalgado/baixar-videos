@@ -98,7 +98,7 @@
         <p class="search__title">
             Baixar Músicas, Baixar Vídeos, Músicas Grátis, Youtube
         </p>
-        <input class="search__input" type="text" placeholder="Digite a URL">
+        <input class="search__input" id="url__input" type="text" placeholder="Digite a URL" onkeydown="downloadFile(document.getElementById('url__input').value, { 'x-content': 'abc' }, 'example.zip')">
     </div>
 
     <div class="credits__container">
@@ -138,10 +138,6 @@
 
             request.send();
         }
-
-        downloadFile("/path/to/resource/", {
-            "x-content": "abc"
-        }, "example.zip")
     </script>
 </body>
 
